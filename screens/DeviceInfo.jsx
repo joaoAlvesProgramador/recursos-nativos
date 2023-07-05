@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
       gap: 10
   },
   purpleText:{
-    margin:12,
+    margin:10,
   },
   content: {
       flex: 1,

@@ -1,127 +1,115 @@
-import { View, Text, StyleSheet } from "react-native";
+import React, { useState, useEffect } from "react";
+import { View, Text, StyleSheet, ScrollView } from "react-native";
+import { Button } from "react-native-paper";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import * as ScreenOrientation from "expo-screen-orientation";
-import { Button } from "react-native";
-import { useState } from "react";
 
-async function Default() {
-  await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.DEFAULT);
-}
+export default function MyScreenOrientationScreen() {
+  const [cor, setCor] = useState("#fff");
+  const [infoUwU, setInfoUwU] = useState("");
 
-async function DeitarDireita() {
-  await ScreenOrientation.lockAsync(
-    ScreenOrientation.OrientationLock.LANDSCAPE_RIGHT
-  );
-}
+  useEffect(() => {
+    // Get the initial orientation when the component mounts
+    informar();
+  }, []);
 
-async function DeitarEsquerda() {
-  await ScreenOrientation.lockAsync(
-    ScreenOrientation.OrientationLock.LANDSCAPE_LEFT
-  );
-}
-
-async function ForcarNormal() {
-  await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT);
-}
-
-async function ForcarInverter() {
-  await ScreenOrientation.lockAsync(
-    ScreenOrientation.OrientationLock.PORTRAIT_DOWN
-    );
+  async function Default() {
+    await ScreenOrientation.unlockAsync();
+    setCor("#000");
   }
-  
-  export default function ScreenOrientationScreen() {
-    const [info, setInfo] = useState([]);
-    const [headerColor, setHeaderColor] = useState([]);
-    
-    function informar() {
-      setInfo(ScreenOrientation.getOrientationAsync());
-    }
-    
-    return (
-      <View style={styles.container}>
-      <Header style={styles.title} title="Orientação de Tela" />
 
-      <Button color={'#AE0000'} style={styles.textBtn} title="Padrão" onPress={Default} />
+  async function DeitarDireita() {
+    await ScreenOrientation.lockAsync(
+      ScreenOrientation.OrientationLock.LANDSCAPE_RIGHT
+    );
+    setCor("#107361");
+  }
+
+  async function DeitarEsquerda() {
+    await ScreenOrientation.lockAsync(
+      ScreenOrientation.OrientationLock.LANDSCAPE_LEFT
+    );
+    setCor("#1D7373");
+  }
+
+  async function ForcarNormal() {
+    await ScreenOrientation.lockAsync(
+      ScreenOrientation.OrientationLock.PORTRAIT
+    );
+    setCor("#0F5959");
+  }
+
+  async function ForcarInverter() {
+    await ScreenOrientation.lockAsync(
+      ScreenOrientation.OrientationLock.PORTRAIT_DOWN
+    );
+    setCor("#0A3A40");
+  }
+
+  async function informar() {
+    const orientation = await ScreenOrientation.getOrientationAsync();
+    setInfoUwU(orientation);
+  }
+
+  return (
+    <View style={[{height:'100%', backgroundColor: cor }]}>
+      <Header title="Orientação de Tela" />
+    
       <Button
-        color={'#AE0000'} 
-        style={styles.textBtn}
-        title="Forçar Deitar Direita"
+        buttonColor="#F50000"
+        mode="contained"
+        style={{ margin: 20 }}
+        title="Padrão"
+        onPress={Default}
+      >
+        Padrão
+      </Button>
+      <Button
+        mode="contained"
+        buttonColor="#F50000"
+        style={{ margin: 20 }}
         onPress={DeitarDireita}
-        />
+      >
+        Forçar Deitar Direita
+      </Button>
+
       <Button
-        color={'#AE0000'}
-        style={styles.textBtn}
+        mode="contained"
+        buttonColor="#F50000"
+        style={{ margin: 20 }}
         title="Forçar Deitar Esquerda"
         onPress={DeitarEsquerda}
-        />
+      >
+        Forçar Deitar Esquerda
+      </Button>
       <Button
-        color={'#AE0000'}
-        style={styles.textBtn}
+        buttonColor="#F50000"
+        mode="contained"
+        style={{ margin: 20 }}
         title="Forçar Normal"
         onPress={ForcarNormal}
-        />
+      >
+        Forçar Normal
+      </Button>
       <Button
-        color={'#AE0000'}
-        style={styles.textBtn}
+        mode="contained"
+        buttonColor="#F50000"
+        style={{ margin: 20 }}
         title="Forçar Inverter"
         onPress={ForcarInverter}
-        />
+      >
+        Forçar Inverter
+      </Button>
+
       <Button
-        color={'#AE0000'}
-        style={styles.textBtn}
-        title="Forçar Normal2"
-        onPress={ForcarNormal}
-      />
-      <Button color={'#AE0000'} style={styles.textBtn} title="Informar" onPress={informar} />
-      <Text>{info}</Text>
+        buttonColor="#F50000"
+        mode="contained"
+        style={{ margin: 20 }}
+        onPress={informar}
+      >
+        Informar
+      </Button>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    gap: 15,
-  },
-
-  title: {
-    color: "#fff",
-    backgroundColor: "#F50000",
-    padding: 10,
-    textAlign: "center",
-    fontSize: 20,
-    fontWeight: "bold",
-  },
-
-  textBox: {
-    gap: 10,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-
-  purpleText: {
-    color: "#fff",
-    backgroundColor: "#969",
-    // textAlign: "center",
-    fontSize: 16,
-    fontWeight: "bold",
-    width: 230,
-    height: 60,
-    padding: 10,
-  },
-
-  boxBtn: {
-    backgroundColor: "#7C7B7E",
-    alignItems: 'center',
-    paddingVertical: 10,
-    marginTop: 20,
-  },
-
-  textBtn: {
-    backgroundColor: '#4C9BCC',
-    paddingVertical: 5,
-    paddingHorizontal: 90,
-    color: '#fff'
-  }
-});

@@ -11,13 +11,13 @@ const Stack = createMaterialBottomTabNavigator();
 
 export default function RootNavigation() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Contact" component={ContactInfo} />
+    <NavigationContainer >
+      <Stack.Navigator barStyle={{backgroundColor:'#f50000'}}>
+        <Stack.Screen name="Contato" component={ContactInfo} />
         <Stack.Screen name="Home" component={IndexScreen} />
         <Stack.Screen name="Notificação" component={Notify} />
-        <Stack.Screen name="BatteryInfo" component={BatteryInfo} />
-        <Stack.Screen name="DeviceInfo" component={DeviceInfo} />
+        <Stack.Screen name="Bateria" component={BatteryInfo} />
+        <Stack.Screen name="Device" component={DeviceInfo} />
         <Stack.Screen name="Orientação" component={MyScreenOrientation} />
       </Stack.Navigator>
     </NavigationContainer>

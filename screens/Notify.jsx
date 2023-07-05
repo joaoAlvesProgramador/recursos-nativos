@@ -1,4 +1,5 @@
-import { View, Text, StyleSheet, Button, Alert } from "react-native";
+import { View, Text, StyleSheet, Alert } from "react-native";
+import {  Button, } from "react-native-paper";
 import Header from "../components/Header";
 import * as Notifications from "expo-notifications";
 import * as Battery from "expo-battery";
@@ -95,39 +96,49 @@ export default function Notify({navigation}) {
         <Text style={styles.Text}>Expo Token: {expoToken} </Text>
         
         <Button
-          color={'#AE0000'}
-          title="Enviar Notificação"
+          buttonColor='#AE0000'
+          mode='contained'
           onPress={async () => await notificarExpo()}
-        />
+          >
+            Enviar Notificação
+          </Button>
 
         <Button 
-          color={'#AE0000'} 
-          title="Ler última notificação clicada"
+          buttonColor='#AE0000' 
+          mode='contained'
           onPress={ async() => lerNotificacao() } 
-        />
+          >
+            Ler ultima notificação clicada
+          </Button>
 
         <Button 
-          color={'#AE0000'} 
-          title="Ler notificações não clicadas" 
-        />
+          buttonColor='#AE0000' 
+          mode="contained" 
+          >
+            Ler notificações não clicadas
+          </Button>
 
         <Button 
-          color={'#AE0000'} 
-          title="Mostrar Bateria" 
+          buttonColor='#AE0000' 
+          mode='contained' 
           onPress={async () => notificarExpoBattery()} 
-        ></Button>
+          > Mostrar Bateria</Button>
 
         <Button 
-          color={'#AE0000'} 
-          title="Nome do Aparelho" 
+          buttonColor='#AE0000'  
+          mode='contained'
           onPress={async () => notificarExpoDeviceName()} 
-        />
+          >
+            Nome do aparelho
+          </Button>
 
         <Button 
-          color={'#AE0000'} 
-          title="Ir para outra tela" 
+          buttonColor='#AE0000' 
+          mode='contained' 
           onPress={async () => irParaOutraTela()} 
-        />
+        >
+          Ir para outra tela
+        </Button>
 
       </View>
     </View>
@@ -165,3 +176,5 @@ const styles = StyleSheet.create({
     fontSize:25,
   },
 });
+
+// </Button>

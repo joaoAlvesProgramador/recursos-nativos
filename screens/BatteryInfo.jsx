@@ -50,7 +50,7 @@ export default function BatteryInfo() {
 const styles = StyleSheet.create({
   Text:{
     paddingTop:200,
-    paddingBottom:200,
+    paddingBottom:100,
     paddingLeft:180,
   }
 })
