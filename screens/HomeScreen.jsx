@@ -10,6 +10,8 @@ import Sensors from "./Sensors";
 import Autent from "./Autent";
 import CaptureSrc from "./Capture";
 import CameraInfo from "./CameraInfo";
+import Location from "./Location";
+import LocationScreen from "./Location";
 
 const Stack = createMaterialBottomTabNavigator();
 
@@ -21,6 +23,7 @@ export default function RootNavigation() {
         <Stack.Screen name="Home" component={IndexScreen} />
         <Stack.Screen name="Notificação" component={Notify} />
         <Stack.Screen name="Bateria" component={BatteryInfo} />
+        <Stack.Screen name="L" component={LocationScreen} />
         <Stack.Screen name="Device" component={DeviceInfo} />
         <Stack.Screen name="Orientação" component={MyScreenOrientation} />
         <Stack.Screen name="S" component={Sensors} />
